@@ -17,8 +17,15 @@ imports:
 - path: network-template.py
 - path: firewall-template.py
 - path: compute-engine-template.py
+- path: ./startup-script.sh
+  name: startup-script.sh
+- path: ./tst.sh
+  name: tst.sh
 
 resources:
 - name: compute-engine-setup
   type: compute-engine-template.py
-
+  properties:
+    metadata-from-file:
+      startup-script: startup-script.sh
+      tst: tst.sh

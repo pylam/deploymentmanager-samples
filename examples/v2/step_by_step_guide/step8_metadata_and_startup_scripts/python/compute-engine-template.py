@@ -26,16 +26,23 @@ def GenerateConfig(unused_context):
       'properties': {
           'machineType': 'f1-micro',
           'zone': 'us-central1-f',
-          'network': NETWORK_NAME
-      }
+          'network': NETWORK_NAME,
+          'metadata-from-file': {
+               'startup-script': 'startup-script.sh',
+               'tst': 'tst.sh'
+             }
+          }
   }, {
       'name': 'the-second-vm',
       'type': 'vm-template.py',
       'properties': {
           'machineType': 'f1-micro',
           'zone': 'us-central1-f',
-          'network': NETWORK_NAME
-      }
+          'network': NETWORK_NAME,
+          'metadata-from-file': {
+              'startup-script': 'startup-script.sh'
+            }
+          }
   }, {
       'name': NETWORK_NAME,
       'type': 'network-template.py'

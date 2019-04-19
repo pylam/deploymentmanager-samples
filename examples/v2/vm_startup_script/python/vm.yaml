@@ -20,7 +20,7 @@ resources:
 - name: my-vm
   type: vm_template.py
   properties:
-    zone: ZONE_TO_RUN
+    zone: us-east1-b 
     startup-script: |
       #!/bin/bash
       python -m SimpleHTTPServer 8080

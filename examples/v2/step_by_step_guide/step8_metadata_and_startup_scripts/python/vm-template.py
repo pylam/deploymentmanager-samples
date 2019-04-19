@@ -21,6 +21,14 @@ COMPUTE_URL_BASE = 'https://www.googleapis.com/compute/v1/'
 def GenerateConfig(context):
   """Creates the virtual machine."""
 
+  items = []
+  for key, value in context.properties['metadata-from-file'].iteritems():
+    items.append({
+        'key': key,
+        'value': context.imports[value]
+        })
+  metadata = {'items': items}
+
   resources = [{
       'name': context.env['name'],
       'type': 'compute.v1.instance',
@@ -49,13 +57,7 @@ def GenerateConfig(context):
                   'type': 'ONE_TO_ONE_NAT'
               }]
           }],
-          'metadata': {
-              'items': [{
-                  'key': 'startup-script',
-                  'value': ''.join(['#!/bin/bash\n',
-                                    'python -m SimpleHTTPServer 80'])
-              }]
-          }
+          'metadata': metadata 
       }
   }]
   return {'resources': resources}

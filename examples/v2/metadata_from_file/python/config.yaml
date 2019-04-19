@@ -16,6 +16,8 @@ imports:
 - path: instance.py
 - path: ../startup-script.sh
   name: startup-script.sh
+- path: ../tst.sh
+  name: tst.sh
 
 resources:
 - name: my-instance
@@ -23,4 +25,5 @@ resources:
   properties:
     metadata-from-file:
       startup-script: startup-script.sh
-    zone: ZONE_TO_RUN
+      tst: tst.sh
+    zone: us-east1-b 
